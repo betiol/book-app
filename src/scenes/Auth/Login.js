@@ -1,0 +1,122 @@
+/**
+ * @flow
+ */
+
+import React, { Fragment } from 'react';
+import { Dimensions, StyleSheet, View, Platform } from 'react-native';
+import { Formik } from 'formik';
+import styled from 'styled-components';
+import Colors from '../../utils/Colors';
+import { Input, Button } from '../../components';
+import LoginMutation from './LoginMutation';
+import { loginValidation } from '../../components/FormValidations/authValidation';
+
+const { width, height } = Dimensions.get('window');
+
+function Login({ screenProps, setRegister }) {
+	console.log(setRegister);
+	function handleLogin({ email, password }) {
+		const input = { email, password };
+
+		const onCompleted = async ({ LoginEmail }) => {
+			console.log(LoginEmail);
+			if (LoginEmail) {
+				screenProps.onUserUpdate && screenProps.onUserUpdate(LoginEmail);
+			}
+		};
+
+		const onError = (e) => console.log(e);
+
+		LoginMutation.commit(input, onCompleted, onError);
+	}
+
+	return (
+		<Formik
+			onSubmit={handleLogin}
+			validationSchema={loginValidation}
+			render={({ errors, values, handleSubmit, handleChange }) => {
+				return (
+					<LoginForm style={styles.form}>
+						<Title>SIGN IN</Title>
+						<Input
+							value={values.email}
+							// autoCompleteType={'email'}
+							keyboardType={'email-address'}
+							placeholder={'Email'}
+							onChangeText={handleChange('email')}
+							error={errors.email}
+						/>
+						<Input
+							onChangeText={handleChange('password')}
+							value={values.password}
+							placeholder={'Password'}
+							error={errors.password}
+							secureTextEntry
+						/>
+						<FormFooter>
+							<Button onPress={handleSubmit} text={'Send'} />
+							<DontHaveAccount>
+								<DontHaveAccountText>Don't have any account?</DontHaveAccountText>
+								<TextWithLineButton onPress={() => setRegister(true)}>
+									<TextWithLine> Click here</TextWithLine>
+								</TextWithLineButton>
+							</DontHaveAccount>
+						</FormFooter>
+					</LoginForm>
+				);
+			}}
+		/>
+	);
+}
+
+const LoginForm = styled.View`
+	position: absolute;
+	height: ${height / 3};
+	width: ${width - 80};
+	background-color: white
+	z-index: 1;
+	align-self: center;
+  top: 30%;
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: center;
+`;
+
+const TextWithLineButton = styled.TouchableOpacity``;
+
+const TextWithLine = styled.Text`textDecorationLine: underline;`;
+
+const DontHaveAccount = styled.View`
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 10px;
+`;
+
+const DontHaveAccountText = styled.Text``;
+
+const Title = styled.Text`
+	font-weight: bold;
+	font-size: 22px;
+	text-align: center;
+`;
+
+const FormFooter = styled.View`
+	flex: 1;
+	justify-content: space-between;
+`;
+
+const styles = StyleSheet.create({
+	form: {
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 2
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5
+	}
+});
+
+export default Login;

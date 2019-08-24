@@ -56,6 +56,14 @@ export default function Me(data) {
 								<Name>{props.me && props.me.name}</Name>
 							</UserContainer>
 							<MenuContainer>
+								<TouchableOpacity onPress={() => data.navigation.navigate('Books')}>
+									<Item>
+										<Icon>
+											<Ionicons name="ios-book" size={24} color={'black'} />
+										</Icon>
+										<Label>All Books</Label>
+									</Item>
+								</TouchableOpacity>
 								<TouchableOpacity
 									onPress={() => data.navigation.navigate('LikedBooks')}
 								>
@@ -66,6 +74,7 @@ export default function Me(data) {
 										<Label>Liked Books</Label>
 									</Item>
 								</TouchableOpacity>
+
 								<TouchableOpacity onPress={logout}>
 									<Item>
 										<Icon>
@@ -75,16 +84,6 @@ export default function Me(data) {
 									</Item>
 								</TouchableOpacity>
 							</MenuContainer>
-							{/* <ItemsContainer>
-								<IconContainer onPress={logout}>
-									<Ionicons name={'ios-exit'} color={Colors.blue} size={30} />
-									<MenuText> Exit</MenuText>
-								</IconContainer>
-								<IconContainer onPress={null}>
-									<Ionicons name={'ios-exit'} color={Colors.blue} size={30} />
-									<MenuText> Books</MenuText>
-								</IconContainer>
-							</ItemsContainer> */}
 						</Container>
 					);
 				}

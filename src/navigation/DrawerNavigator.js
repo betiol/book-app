@@ -6,6 +6,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createDrawerNavigator } from 'react-navigation';
 import Books from '../scenes/Books/Books';
+import LikedBooks from '../scenes/Books/LikedBooks';
 import Login from '../scenes/Auth/Login';
 import Me from './Me';
 import Colors from '../utils/Colors';
@@ -13,7 +14,8 @@ import Colors from '../utils/Colors';
 export default createDrawerNavigator(
 	{
 		Books,
-		Login
+		Login,
+		LikedBooks
 	},
 	{
 		contentOptions: {

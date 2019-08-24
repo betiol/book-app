@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4df4d216c9bebf105b9d0182d998c45a
+ * @relayHash 81cb89e38808bdc15b71c772780d3aaf
  */
 
 /* eslint-disable */
@@ -18,11 +18,9 @@ export type UserLikeBookMutationVariables = {|
 |};
 export type UserLikeBookMutationResponse = {|
   +UserLikeBook: ?{|
-    +user: ?{|
+    +book: ?{|
       +id: string,
-      +_id: ?string,
-      +name: ?string,
-      +likes: ?$ReadOnlyArray<?string>,
+      +likedByUser: ?boolean,
     |}
   |}
 |};
@@ -38,11 +36,9 @@ mutation UserLikeBookMutation(
   $input: UserLikeBookInput!
 ) {
   UserLikeBook(input: $input) {
-    user {
+    book {
       id
-      _id
-      name
-      likes
+      likedByUser
     }
   }
 }
@@ -76,10 +72,10 @@ v1 = [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "user",
+        "name": "book",
         "storageKey": null,
         "args": null,
-        "concreteType": "User",
+        "concreteType": "Book",
         "plural": false,
         "selections": [
           {
@@ -92,21 +88,7 @@ v1 = [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "_id",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "name",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "likes",
+            "name": "likedByUser",
             "args": null,
             "storageKey": null
           }
@@ -135,11 +117,11 @@ return {
     "operationKind": "mutation",
     "name": "UserLikeBookMutation",
     "id": null,
-    "text": "mutation UserLikeBookMutation(\n  $input: UserLikeBookInput!\n) {\n  UserLikeBook(input: $input) {\n    user {\n      id\n      _id\n      name\n      likes\n    }\n  }\n}\n",
+    "text": "mutation UserLikeBookMutation(\n  $input: UserLikeBookInput!\n) {\n  UserLikeBook(input: $input) {\n    book {\n      id\n      likedByUser\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '97248ffae8fbcd92d93f5e2231ce753d';
+(node/*: any*/).hash = 'ebf9c3676bd2528607e35863d4727613';
 module.exports = node;

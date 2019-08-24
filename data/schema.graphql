@@ -204,6 +204,7 @@ type UserLikeBookPayload {
   message: String
   error: String
   user: User
+  book: Book
   clientMutationId: String
 }
 

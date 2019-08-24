@@ -13,6 +13,7 @@ const RouteConfigMap = {
 	Register,
 	DrawerNavigator,
 	Books,
+	BookAdd,
 	BookDetails
 };
 

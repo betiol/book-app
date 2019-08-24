@@ -51,10 +51,13 @@ function LikedBooks({ query, relay, isFetching, navigation }) {
 						return (
 							<Button
 								onPress={() =>
-									navigation.navigate('BookDetails', { book: item.node, index })}
+									navigation.navigate('BookDetails', {
+										book: item.node,
+										index: item.node._id
+									})}
 							>
 								<BooksContainer>
-									<Transition shared={`image${index}`}>
+									<Transition delay shared={`image${item.node._id}`}>
 										<BookItem image={item.node.image} />
 									</Transition>
 								</BooksContainer>

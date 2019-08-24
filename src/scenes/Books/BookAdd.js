@@ -72,6 +72,12 @@ function BookAdd() {
 									onChangeText={handleChange('author')}
 									error={errors.author}
 								/>
+								<Input
+									placeholder={'Purchase URL'}
+									value={values.purchaseUrl}
+									onChangeText={handleChange('purchaseUrl')}
+									error={errors.purchaseUrl}
+								/>
 								<Button onPress={handleSubmit} text={'Save'} />
 							</Fragment>
 						</Container>

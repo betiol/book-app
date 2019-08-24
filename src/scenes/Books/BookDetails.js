@@ -20,7 +20,7 @@ function BookDetails({ query }) {
 	const index = useNavigationParam('index');
 
 	function handleLike(book) {
-		const onCompleted = () => alert(`You liked the book ${book}`);
+		const onCompleted = (response) => console.log(response);
 
 		const onError = (error) => console.log(error);
 
@@ -36,7 +36,7 @@ function BookDetails({ query }) {
 			<Details>
 				<HeadWrapper>
 					<BookImage>
-						<Transition shared={`image${index}`}>
+						<Transition delay shared={`image${index}`}>
 							<BookItem image={query.book.image} />
 						</Transition>
 						<Pages>{query.book.pages} pages</Pages>

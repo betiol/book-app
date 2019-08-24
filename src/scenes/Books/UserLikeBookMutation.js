@@ -11,11 +11,9 @@ import type {
 const mutation = graphql`
 	mutation UserLikeBookMutation($input: UserLikeBookInput!) {
 		UserLikeBook(input: $input) {
-			user {
+			book {
 				id
-				_id
-				name
-				likes
+				likedByUser
 			}
 		}
 	}
@@ -27,13 +25,17 @@ function commit(
 	onError: (error: Object) => void
 ): UserLikeBookMutationResponse {
 	const variables = { input };
+	const optimisticResponse = {
+		UserLikeBook: {
+			book: {
+				id: input.book,
+				likedByUser: !true
+			}
+		}
+	};
 	return commitMutation(Environment, {
 		mutation,
-		updater: (store) => {
-			const book = store.getRootField('UserLikeBook');
-			const user = book.getLinkedRecord('user');
-			const tp = user.getType();
-		},
+		optimisticResponse,
 		variables,
 		onCompleted,
 		onError

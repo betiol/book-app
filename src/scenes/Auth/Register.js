@@ -13,7 +13,7 @@ import { registerValidation } from '../../components/FormValidations/authValidat
 
 const { width, height } = Dimensions.get('window');
 
-function Register({ screenProps, setRegister }) {
+function Register({ screenProps, navigation }) {
 	function handleRegister({ name, email, password }) {
 		const input = { email, password, name };
 		const onCompleted = async ({ RegisterEmail }) => {
@@ -28,46 +28,51 @@ function Register({ screenProps, setRegister }) {
 	}
 
 	return (
-		<Formik
-			onSubmit={handleRegister}
-			validationSchema={registerValidation}
-			render={({ errors, values, handleSubmit, handleChange }) => {
-				return (
-					<LoginForm style={styles.form}>
-						<Title>SIGN UP</Title>
-						<Input
-							value={values.name}
-							placeholder={'Your name'}
-							error={errors.name}
-							onChangeText={handleChange('name')}
-						/>
-						<Input
-							value={values.email}
-							// autoCompleteType={'email'}
-							keyboardType={'email-address'}
-							error={errors.email}
-							placeholder={'Email'}
-							onChangeText={handleChange('email')}
-						/>
-						<Input
-							onChangeText={handleChange('password')}
-							value={values.password}
-							error={errors.password}
-							placeholder={'Password'}
-							secureTextEntry
-						/>
-						<FormFooter>
-							<Button onPress={handleSubmit} text={'Send'} />
-							<DontHaveAccount>
-								<TextWithLineButton onPress={() => setRegister(false)}>
-									<TextWithLine> Back to Login</TextWithLine>
-								</TextWithLineButton>
-							</DontHaveAccount>
-						</FormFooter>
-					</LoginForm>
-				);
-			}}
-		/>
+		<Container>
+			<Yellow />
+			<Formik
+				onSubmit={handleRegister}
+				validationSchema={registerValidation}
+				render={({ errors, values, handleSubmit, handleChange }) => {
+					return (
+						<LoginForm style={styles.form}>
+							<Title>SIGN UP</Title>
+							<Input
+								value={values.name}
+								placeholder={'Your name'}
+								error={errors.name}
+								onChangeText={handleChange('name')}
+							/>
+							<Input
+								value={values.email}
+								keyboardType={'email-address'}
+								error={errors.email}
+								placeholder={'Email'}
+								onChangeText={handleChange('email')}
+							/>
+							<Input
+								onChangeText={handleChange('password')}
+								value={values.password}
+								error={errors.password}
+								placeholder={'Password'}
+								secureTextEntry
+							/>
+							<FormFooter>
+								<Button onPress={handleSubmit} text={'Send'} />
+								<DontHaveAccount>
+									<TextWithLineButton
+										onPress={() => navigation.navigate('Login')}
+									>
+										<TextWithLine> Back to Login</TextWithLine>
+									</TextWithLineButton>
+								</DontHaveAccount>
+							</FormFooter>
+						</LoginForm>
+					);
+				}}
+			/>
+			<White />
+		</Container>
 	);
 }
 

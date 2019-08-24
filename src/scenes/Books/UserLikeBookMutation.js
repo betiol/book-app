@@ -1,5 +1,7 @@
 //@flow
 import { graphql, commitMutation } from 'react-relay';
+import { ConnectionHandler } from 'relay-runtime';
+
 import Environment from '../../relay/Environment';
 import type {
 	UserLikeBookMutationVariables,
@@ -27,6 +29,11 @@ function commit(
 	const variables = { input };
 	return commitMutation(Environment, {
 		mutation,
+		updater: (store) => {
+			const book = store.getRootField('UserLikeBook');
+			const user = book.getLinkedRecord('user');
+			const tp = user.getType();
+		},
 		variables,
 		onCompleted,
 		onError

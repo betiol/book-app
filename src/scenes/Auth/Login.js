@@ -13,8 +13,7 @@ import { loginValidation } from '../../components/FormValidations/authValidation
 
 const { width, height } = Dimensions.get('window');
 
-function Login({ screenProps, setRegister }) {
-	console.log(setRegister);
+function Login({ screenProps, navigation }) {
 	function handleLogin({ email, password }) {
 		const input = { email, password };
 
@@ -31,43 +30,69 @@ function Login({ screenProps, setRegister }) {
 	}
 
 	return (
-		<Formik
-			onSubmit={handleLogin}
-			validationSchema={loginValidation}
-			render={({ errors, values, handleSubmit, handleChange }) => {
-				return (
-					<LoginForm style={styles.form}>
-						<Title>SIGN IN</Title>
-						<Input
-							value={values.email}
-							// autoCompleteType={'email'}
-							keyboardType={'email-address'}
-							placeholder={'Email'}
-							onChangeText={handleChange('email')}
-							error={errors.email}
-						/>
-						<Input
-							onChangeText={handleChange('password')}
-							value={values.password}
-							placeholder={'Password'}
-							error={errors.password}
-							secureTextEntry
-						/>
-						<FormFooter>
-							<Button onPress={handleSubmit} text={'Send'} />
-							<DontHaveAccount>
-								<DontHaveAccountText>Don't have any account?</DontHaveAccountText>
-								<TextWithLineButton onPress={() => setRegister(true)}>
-									<TextWithLine> Click here</TextWithLine>
-								</TextWithLineButton>
-							</DontHaveAccount>
-						</FormFooter>
-					</LoginForm>
-				);
-			}}
-		/>
+		<Container>
+			<Yellow />
+			<Formik
+				onSubmit={handleLogin}
+				validationSchema={loginValidation}
+				render={({ errors, values, handleSubmit, handleChange }) => {
+					return (
+						<LoginForm style={styles.form}>
+							<Title>SIGN IN</Title>
+							<Input
+								value={values.email}
+								keyboardType={'email-address'}
+								placeholder={'Email'}
+								onChangeText={handleChange('email')}
+								error={errors.email}
+							/>
+							<Input
+								onChangeText={handleChange('password')}
+								value={values.password}
+								placeholder={'Password'}
+								error={errors.password}
+								secureTextEntry
+							/>
+							<FormFooter>
+								<Button onPress={handleSubmit} text={'Send'} />
+								<DontHaveAccount>
+									<DontHaveAccountText>
+										Don't have any account?
+									</DontHaveAccountText>
+									<TextWithLineButton
+										onPress={() => navigation.navigate('Register')}
+									>
+										<TextWithLine> Click here</TextWithLine>
+									</TextWithLineButton>
+								</DontHaveAccount>
+							</FormFooter>
+						</LoginForm>
+					);
+				}}
+			/>
+			<White />
+		</Container>
 	);
 }
+
+const Container = styled.KeyboardAvoidingView.attrs({
+	behavior: 'padding',
+	enabled: Platform.OS === 'ios'
+})`
+	flex: 1;
+	justify-content: center;
+	align-content: center;
+`;
+
+const Yellow = styled.View`
+	flex: 1;
+	background-color: ${Colors.primary};
+`;
+
+const White = styled.View`
+	flex: 1;
+	background-color: #fff;
+`;
 
 const LoginForm = styled.View`
 	position: absolute;

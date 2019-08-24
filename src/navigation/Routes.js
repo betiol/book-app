@@ -1,6 +1,5 @@
 import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import { createFluidNavigator, FluidNavigator } from 'react-navigation-fluid-transitions';
-import Auth from '../scenes/Auth/Auth';
 import Login from '../scenes/Auth/Login';
 import Register from '../scenes/Auth/Register';
 

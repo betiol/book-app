@@ -14,6 +14,7 @@ import { BookItem } from './BookItem';
 import { withNavigation } from 'react-navigation';
 
 function LikedBooks({ query, relay, isFetching, navigation }) {
+	console.log(query);
 	const [ refreshing, setRefreshing ] = useState(false);
 
 	if (isFetching) {
@@ -45,18 +46,21 @@ function LikedBooks({ query, relay, isFetching, navigation }) {
 					onRefresh={refetch}
 					keyExtractor={(item) => item.node._id}
 					showsHorizontalScrollIndicator={false}
-					renderItem={({ item, index }) => (
-						<Button
-							onPress={() =>
-								navigation.navigate('BookDetails', { book: item.node, index })}
-						>
-							<BooksContainer>
-								<Transition shared={`image${index}`}>
-									<BookItem image={item.node.image} />
-								</Transition>
-							</BooksContainer>
-						</Button>
-					)}
+					renderItem={({ item, index }) => {
+						console.log('index,', index);
+						return (
+							<Button
+								onPress={() =>
+									navigation.navigate('BookDetails', { book: item.node, index })}
+							>
+								<BooksContainer>
+									<Transition shared={`image${index}`}>
+										<BookItem image={item.node.image} />
+									</Transition>
+								</BooksContainer>
+							</Button>
+						);
+					}}
 				/>
 			</Wrapper>
 		</Container>

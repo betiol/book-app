@@ -43,7 +43,7 @@ export default function Me(data) {
 				}
 			`}
 			render={({ error, props }) => {
-				console.log(props);
+				if (!props) return <Text>Loading...</Text>;
 				if (props) {
 					return (
 						<Container>

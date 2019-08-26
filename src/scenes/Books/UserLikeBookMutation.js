@@ -25,18 +25,15 @@ function commit(
 	onError: (error: Object) => void
 ): UserLikeBookMutationResponse {
 	const variables = { input };
-	const optimisticResponse = {
-		UserLikeBook: {
-			book: {
-				id: input.book,
-				likedByUser: !true
-			}
-		}
-	};
+
 	return commitMutation(Environment, {
 		mutation,
-		optimisticResponse,
 		variables,
+		updater: (proxyStore) => {
+			const payload = proxyStore.getRootField('UserLikeBook');
+			const bookEdge = payload.getLinkedRecord('book');
+			bookEdge.setValue(!bookEdge.getValue('likedByUser'), 'likedByUser');
+		},
 		onCompleted,
 		onError
 	});

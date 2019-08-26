@@ -33,11 +33,11 @@ const RouteConfigMap = {
 };
 
 const LoggedInRoutes = createAppContainer(
-	createFluidNavigator(RouteConfigMap, { initialRouteName: 'DrawerNavigator' })
+	createSwitchNavigator(RouteConfigMap, { initialRouteName: 'DrawerNavigator' })
 );
 
 const LoggedOutRoutes = createAppContainer(
-	createFluidNavigator(RouteConfigMap, { initialRouteName: 'Login' })
+	createSwitchNavigator(RouteConfigMap, { initialRouteName: 'Login' })
 );
 
 export { LoggedInRoutes, LoggedOutRoutes };

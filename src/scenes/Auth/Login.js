@@ -94,10 +94,11 @@ const White = styled.View`
 
 const LoginForm = styled.View`
 	position: absolute;
-	height: ${height / 3};
+  height: ${height / 2};
 	width: ${width - 80};
 	background-color: white
 	z-index: 1;
+  flex: 1;
 	align-self: center;
   top: 30%;
   border-radius: 10px;

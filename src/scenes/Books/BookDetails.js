@@ -89,8 +89,10 @@ const Container = styled.View`
 
 const Details = styled.View`
 	flex: 1;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding: 10px;
+	/* padding-left: 10px;
+  m
+	padding-right: 10px; */
 	margin-top: 10px;
 	background-color: ${Colors.primary};
 `;
@@ -151,10 +153,7 @@ const BookImage = styled.View`
 	align-items: center;
 `;
 
-const BookInfos = styled.View`
-	flex: 2;
-	padding-bottom: 10px;
-`;
+const BookInfos = styled.View`flex: 2;`;
 
 const Title = styled.Text`
 	font-weight: bold;

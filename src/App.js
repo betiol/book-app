@@ -4,8 +4,6 @@ import UserStorage from './utils/UserStorage';
 import Colors from './utils/Colors';
 
 function App(props) {
-	let router = LoggedInRoutes.router;
-	console.log(router);
 	const [ user, setUser ] = useState({});
 	const [ loaded, setLoaded ] = useState({});
 

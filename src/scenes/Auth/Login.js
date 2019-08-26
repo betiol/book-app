@@ -16,9 +16,7 @@ const { width, height } = Dimensions.get('window');
 function Login({ screenProps, navigation }) {
 	function handleLogin({ email, password }) {
 		const input = { email, password };
-
 		const onCompleted = async ({ LoginEmail }) => {
-			console.log(LoginEmail);
 			if (LoginEmail) {
 				screenProps.onUserUpdate && screenProps.onUserUpdate(LoginEmail);
 			}

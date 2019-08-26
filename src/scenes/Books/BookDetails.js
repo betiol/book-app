@@ -7,6 +7,7 @@ import { Text, Image, Linking, View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import styled from 'styled-components';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import ActionButton from 'react-native-action-button';
 import { useNavigationParam, useNavigation } from 'react-navigation-hooks';
 import Colors from '../../utils/Colors';
 import Header from '../../components/Header';
@@ -53,19 +54,9 @@ function BookDetails({ query }) {
 									>
 										<BuyItNowText>Buy it now</BuyItNowText>
 									</BuyItNow>
-									<HeartContainer onPress={() => handleLike(query.book._id)}>
-										<Ionicons
-											size={16}
-											name={
-												query.book.likedByUser ? (
-													'ios-heart'
-												) : (
-													'ios-heart-empty'
-												)
-											}
-											color={'white'}
-										/>
-									</HeartContainer>
+									{/* <HeartContainer onPress={() => handleLike(query.book._id)}>
+									
+									</HeartContainer> */}
 								</ButtonsContainer>
 							</View>
 						</Transition>
@@ -75,6 +66,18 @@ function BookDetails({ query }) {
 			<Description>
 				<DescriptionText>{query.book.description}</DescriptionText>
 			</Description>
+			<ActionButton
+				buttonColor={'#dc4b5d'}
+				renderIcon={() => (
+					<Ionicons
+						size={20}
+						name={query.book.likedByUser ? 'ios-heart' : 'ios-heart-empty'}
+						color={'white'}
+					/>
+				)}
+				onPress={() => handleLike(query.book._id)}
+				degrees={0}
+			/>
 		</Container>
 	);
 }

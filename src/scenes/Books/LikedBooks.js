@@ -11,7 +11,6 @@ import { createQueryRendererWithCustomLoading } from '../../relay/createQueryRen
 import Header from '../../components/Header';
 import Colors from '../../utils/Colors';
 import { BookItem } from './BookItem';
-import { withNavigation } from 'react-navigation';
 
 function LikedBooks({ query, relay, isFetching, navigation }) {
 	console.log(query);
@@ -37,7 +36,7 @@ function LikedBooks({ query, relay, isFetching, navigation }) {
 
 	return (
 		<Container>
-			<Header title={'My Liked Books'} onSearch={null} />
+			<Header title={'My Library'} onSearch={null} />
 			<Wrapper>
 				<FlatList
 					data={query.loadLikedBooks.edges}
@@ -47,7 +46,6 @@ function LikedBooks({ query, relay, isFetching, navigation }) {
 					keyExtractor={(item) => item.node._id}
 					showsHorizontalScrollIndicator={false}
 					renderItem={({ item, index }) => {
-						console.log('index,', index);
 						return (
 							<Button
 								onPress={() =>
@@ -89,10 +87,8 @@ const BooksContainer = styled.View`
 
 const Button = styled.TouchableOpacity``;
 
-const LikedBooksWithNavigation = withNavigation(LikedBooks);
-
 const BooksRefetchContainer = createRefetchContainer(
-	LikedBooksWithNavigation,
+	LikedBooks,
 	{
 		query: graphql`
 			fragment LikedBooks_query on Query
@@ -122,17 +118,13 @@ const BooksRefetchContainer = createRefetchContainer(
 	`
 );
 
-export default createQueryRendererWithCustomLoading(
-	BooksRefetchContainer,
-	LikedBooksWithNavigation,
-	{
-		query: graphql`
-			query LikedBooksQuery {
-				...LikedBooks_query
-			}
-		`,
-		variables: {
-			first: 10
+export default createQueryRendererWithCustomLoading(BooksRefetchContainer, LikedBooks, {
+	query: graphql`
+		query LikedBooksQuery {
+			...LikedBooks_query
 		}
+	`,
+	variables: {
+		first: 10
 	}
-);
+});

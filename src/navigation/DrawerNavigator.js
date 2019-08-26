@@ -7,22 +7,27 @@ import { StyleSheet } from 'react-native';
 import { createDrawerNavigator } from 'react-navigation';
 import Books from '../scenes/Books/Books';
 import LikedBooks from '../scenes/Books/LikedBooks';
+import BookDetails from '../scenes/Books/BookDetails';
+import BookAdd from '../scenes/Books/BookAdd';
 import Login from '../scenes/Auth/Login';
-import Me from './Me';
+import DrawerNavigatorItems from './DrawerNavigatorItems';
 import Colors from '../utils/Colors';
+import { createFluidNavigator, FluidNavigator } from 'react-navigation-fluid-transitions';
+
+const BooksRoutes = FluidNavigator({
+	Books,
+	LikedBooks,
+	BookDetails,
+	BookAdd
+});
 
 export default createDrawerNavigator(
 	{
-		Books,
-		Login,
-		LikedBooks
+		BooksRoutes
 	},
 	{
-		contentOptions: {
-			activeTintColor: Colors.primary
-		},
 		drawerBackgroundColor: Colors.primary,
-		contentComponent: Me
+		contentComponent: DrawerNavigatorItems
 	}
 );
 

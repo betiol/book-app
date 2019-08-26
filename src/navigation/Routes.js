@@ -9,23 +9,35 @@ import BookAdd from '../scenes/Books/BookAdd';
 import DrawerNavigator from './DrawerNavigator';
 
 const RouteConfigMap = {
-	Login,
-	Register,
-	DrawerNavigator,
-	Books,
-	BookAdd,
-	BookDetails
+	DrawerNavigator: {
+		path: '/',
+		screen: require('./DrawerNavigator').default,
+		navigationOptions: {
+			header: null
+		}
+	},
+	Login: {
+		path: '/login',
+		screen: require('../scenes/Auth/Login').default,
+		navigationOptions: {
+			gesturesEnabled: false
+		}
+	},
+	Register: {
+		path: '/register',
+		screen: require('../scenes/Auth/Register').default,
+		navigationOptions: {
+			gesturesEnabled: false
+		}
+	}
 };
 
 const LoggedInRoutes = createAppContainer(
-	createFluidNavigator(RouteConfigMap, {
-		defaultNavigationOptions: { gesturesEnabled: true },
-		initialRouteName: 'DrawerNavigator'
-	})
+	createFluidNavigator(RouteConfigMap, { initialRouteName: 'DrawerNavigator' })
 );
 
-const LoggedOutRoutes = createAppContainer(createFluidNavigator(RouteConfigMap), {
-	initialRouteName: 'Login'
-});
+const LoggedOutRoutes = createAppContainer(
+	createFluidNavigator(RouteConfigMap, { initialRouteName: 'Login' })
+);
 
 export { LoggedInRoutes, LoggedOutRoutes };

@@ -49,10 +49,10 @@ export function createQueryRenderer(
 	config: Config,
 	props: any
 ): React.ComponentType<*> {
-	const properties = props;
 	const { query, queriesParams } = config;
 
-	function QueryRendererWrapper() {
+	function QueryRendererWrapper(props) {
+		const properties = props;
 		const variables = queriesParams ? queriesParams(properties) : config.variables;
 
 		return (
@@ -76,11 +76,11 @@ export function createQueryRenderer(
 						return <FragmentComponent {...properties} query={props} />;
 					}
 
-					return (
-						<Wrapper>
-							<Loading />
-						</Wrapper>
-					);
+					// return (
+					// 	<Wrapper>
+					// 		<Loading />
+					// 	</Wrapper>
+					// );
 				}}
 			/>
 		);
@@ -96,9 +96,9 @@ export function createQueryRendererWithCustomLoading(
 	props: any
 ): React.ComponentType<*> {
 	const { query, queriesParams } = config;
-	const properties = props;
 
-	function QueryRendererWrapper() {
+	function QueryRendererWrapper(qrProps) {
+		const properties = qrProps;
 		const variables = queriesParams ? queriesParams(properties) : config.variables;
 
 		return (

@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
 	item: {
 		shadowColor: '#000',
 		shadowOffset: {
-			width: 0,
-			height: 8
+			width: 3,
+			height: 4
 		},
-		marginBottom: 5,
-		shadowOpacity: 0.4,
+		marginBottom: 4,
+		shadowOpacity: 0.5,
 		shadowRadius: 3,
-		elevation: 8
+		elevation: 4
 	}
 });

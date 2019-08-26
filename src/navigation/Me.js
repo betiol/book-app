@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import { QueryRenderer, graphql } from 'react-relay';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -23,12 +23,7 @@ function getInitialLetters(name: string): string {
 	return initials;
 }
 
-export default function Me(data) {
-	async function logout() {
-		data.navigation.navigate('Login');
-		await UserStorage.clearAll();
-		data.screenProps.onUserUpdate(null);
-	}
+export default function Me() {
 	return (
 		<QueryRenderer
 			environment={Environment}
@@ -46,45 +41,14 @@ export default function Me(data) {
 				if (!props) return <Text>Loading...</Text>;
 				if (props) {
 					return (
-						<Container>
-							<UserContainer>
-								<AvatarTextContainer>
-									<AvatarText>
-										{props.me && getInitialLetters(props.me && props.me.name)}
-									</AvatarText>
-								</AvatarTextContainer>
-								<Name>{props.me && props.me.name}</Name>
-							</UserContainer>
-							<MenuContainer>
-								<TouchableOpacity onPress={() => data.navigation.navigate('Books')}>
-									<Item>
-										<Icon>
-											<Ionicons name="ios-book" size={24} color={'black'} />
-										</Icon>
-										<Label>All Books</Label>
-									</Item>
-								</TouchableOpacity>
-								<TouchableOpacity
-									onPress={() => data.navigation.navigate('LikedBooks')}
-								>
-									<Item>
-										<Icon>
-											<Ionicons name="ios-heart" size={24} color={'black'} />
-										</Icon>
-										<Label>Liked Books</Label>
-									</Item>
-								</TouchableOpacity>
-
-								<TouchableOpacity onPress={logout}>
-									<Item>
-										<Icon>
-											<Ionicons name="ios-exit" size={24} color={'black'} />
-										</Icon>
-										<Label>Exit</Label>
-									</Item>
-								</TouchableOpacity>
-							</MenuContainer>
-						</Container>
+						<UserContainer>
+							<AvatarTextContainer>
+								<AvatarText>
+									{props.me && getInitialLetters(props.me && props.me.name)}
+								</AvatarText>
+							</AvatarTextContainer>
+							<Name>{props.me && props.me.name}</Name>
+						</UserContainer>
 					);
 				}
 
@@ -93,8 +57,6 @@ export default function Me(data) {
 		/>
 	);
 }
-
-const Container = styled.View`flex: 1;`;
 
 const AvatarTextContainer = styled.View`
 	width: 80px;
@@ -138,24 +100,4 @@ const UserContainer = styled.View`
 	background-color: black;
 	justify-content: center;
 	align-items: center;
-`;
-
-const ItemsContainer = styled.View`flex: 3;`;
-
-const MenuContainer = styled.View`flex: 3;`;
-
-const Item = styled.View`
-	flex-direction: row;
-	align-items: center;
-`;
-
-const Icon = styled.View`
-	margin-horizontal: 16;
-	width: 24px;
-	align-items: center;
-`;
-
-const Label = styled.Text`
-	margin: 16px;
-	font-weight: bold;
 `;

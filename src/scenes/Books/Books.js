@@ -15,16 +15,13 @@ import Header from '../../components/Header';
 import { BookItem } from './BookItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createQueryRendererWithCustomLoading } from '../../relay/createQueryRenderer';
-import { withNavigation } from 'react-navigation';
 
 const TOTAL_REFETCH_ITEMS = 3;
 
 function Books({ query, relay, isFetching, navigation }) {
+	console.log(navigation);
 	const [ refreshing, setRefreshing ] = useState(false);
 	const [ isFetchingEnd, setIsFetchingEnd ] = useState(false);
-	// const navigation = useNavigation();
-
-	console.log(refreshing);
 
 	function refetchData() {
 		setRefreshing(true);
@@ -123,10 +120,8 @@ function Books({ query, relay, isFetching, navigation }) {
 	);
 }
 
-const BooksNavigation = withNavigation(Books);
-
 const BooksRefetchContainer = createRefetchContainer(
-	BooksNavigation,
+	Books,
 	{
 		query: graphql`
 			fragment Books_query on Query
@@ -156,7 +151,7 @@ const BooksRefetchContainer = createRefetchContainer(
 	`
 );
 
-export default createQueryRendererWithCustomLoading(BooksRefetchContainer, BooksNavigation, {
+export default createQueryRendererWithCustomLoading(BooksRefetchContainer, Books, {
 	query: graphql`
 		query BooksQuery {
 			...Books_query

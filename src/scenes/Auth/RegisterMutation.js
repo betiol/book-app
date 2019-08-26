@@ -10,6 +10,9 @@ const mutation = graphql`
 	mutation RegisterMutation($input: RegisterEmailInput!) {
 		RegisterEmail(input: $input) {
 			token
+			user {
+				name
+			}
 		}
 	}
 `;

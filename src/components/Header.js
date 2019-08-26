@@ -47,7 +47,7 @@ function Header({ withNavigation, navigation, onPress, title, onSearch }: Props)
 						<Button
 							onPress={withNavigation ? onPress : () => navigation.toggleDrawer()}
 						>
-							<Transition>{withNavigation ? <Arrow /> : <Menu />}</Transition>
+							{withNavigation ? <Arrow /> : <Menu />}
 						</Button>
 						<View>
 							<Text>{title}</Text>

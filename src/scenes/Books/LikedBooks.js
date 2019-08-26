@@ -55,7 +55,7 @@ function LikedBooks({ query, relay, isFetching, navigation }) {
 									})}
 							>
 								<BooksContainer>
-									<Transition delay shared={`image${item.node._id}`}>
+									<Transition shared={`image${item.node._id}`}>
 										<BookItem image={item.node.image} />
 									</Transition>
 								</BooksContainer>

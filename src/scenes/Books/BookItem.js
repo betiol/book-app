@@ -13,6 +13,7 @@ export type Book = {
 };
 
 export function BookItem({ image }: Book) {
+	console.log(image);
 	return (
 		<View style={styles.item}>
 			<FastImage source={{ uri: image, priority: Image.priority.normal }} />

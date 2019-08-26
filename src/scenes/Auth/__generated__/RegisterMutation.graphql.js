@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a7bdd0e606e5f142fa991963d68cd43c
+ * @relayHash f5858344ecf82e4c962dd6e4e3556907
  */
 
 /* eslint-disable */
@@ -20,7 +20,10 @@ export type RegisterMutationVariables = {|
 |};
 export type RegisterMutationResponse = {|
   +RegisterEmail: ?{|
-    +token: ?string
+    +token: ?string,
+    +user: ?{|
+      +name: ?string
+    |},
   |}
 |};
 export type RegisterMutation = {|
@@ -36,6 +39,10 @@ mutation RegisterMutation(
 ) {
   RegisterEmail(input: $input) {
     token
+    user {
+      name
+      id
+    }
   }
 }
 */
@@ -51,30 +58,25 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "RegisterEmail",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input"
-      }
-    ],
-    "concreteType": "RegisterEmailPayload",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "token",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "token",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -83,23 +85,80 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "RegisterEmail",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "RegisterEmailPayload",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "User",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "RegisterMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "RegisterEmail",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "RegisterEmailPayload",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "User",
+            "plural": false,
+            "selections": [
+              (v3/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "id",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "RegisterMutation",
     "id": null,
-    "text": "mutation RegisterMutation(\n  $input: RegisterEmailInput!\n) {\n  RegisterEmail(input: $input) {\n    token\n  }\n}\n",
+    "text": "mutation RegisterMutation(\n  $input: RegisterEmailInput!\n) {\n  RegisterEmail(input: $input) {\n    token\n    user {\n      name\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'dd9c0f4d4ba74195a9c99f3b0bd84743';
+(node/*: any*/).hash = '28419177bd3fc65069087847287cd5a5';
 module.exports = node;

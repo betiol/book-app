@@ -9,17 +9,18 @@ import styled from 'styled-components';
 import Me from './Me';
 import UserStorage from '../utils/UserStorage';
 
-function DrawerNavigatorItems({ navigation }) {
+function DrawerNavigatorItems(props) {
+	console.log(props);
 	async function logout() {
-		navigation.navigate('Login');
+		props.navigation.navigate('Login');
 		await UserStorage.clearAll();
 		screenProps.onUserUpdate(null);
 	}
 	return (
 		<Container>
-			<Me />
+			<Me {...props} />
 			<MenuContainer>
-				<TouchableOpacity onPress={() => navigation.navigate('Books')}>
+				<TouchableOpacity onPress={() => props.navigation.navigate('Books')}>
 					<Item>
 						<Icon>
 							<Ionicons name="ios-book" size={24} color={'black'} />
@@ -27,7 +28,7 @@ function DrawerNavigatorItems({ navigation }) {
 						<Label>All Books</Label>
 					</Item>
 				</TouchableOpacity>
-				<TouchableOpacity onPress={() => navigation.navigate('LikedBooks')}>
+				<TouchableOpacity onPress={() => props.navigation.navigate('LikedBooks')}>
 					<Item>
 						<Icon>
 							<Ionicons name="ios-heart" size={24} color={'black'} />

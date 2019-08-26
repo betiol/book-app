@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash df75f3d6f4caf5609aed13bd10e35d2b
+ * @relayHash 7847f042a49cb8e3f6b832ba632e6203
  */
 
 /* eslint-disable */
@@ -19,7 +19,11 @@ export type LoginMutationVariables = {|
 |};
 export type LoginMutationResponse = {|
   +LoginEmail: ?{|
-    +token: ?string
+    +token: ?string,
+    +error: ?string,
+    +user: ?{|
+      +name: ?string
+    |},
   |}
 |};
 export type LoginMutation = {|
@@ -35,6 +39,11 @@ mutation LoginMutation(
 ) {
   LoginEmail(input: $input) {
     token
+    error
+    user {
+      name
+      id
+    }
   }
 }
 */
@@ -50,30 +59,32 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "LoginEmail",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input"
-      }
-    ],
-    "concreteType": "LoginEmailPayload",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "token",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "token",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "error",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -82,23 +93,82 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "LoginEmail",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "LoginEmailPayload",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "User",
+            "plural": false,
+            "selections": [
+              (v4/*: any*/)
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "LoginMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "LoginEmail",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "LoginEmailPayload",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "User",
+            "plural": false,
+            "selections": [
+              (v4/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "id",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "LoginMutation",
     "id": null,
-    "text": "mutation LoginMutation(\n  $input: LoginEmailInput!\n) {\n  LoginEmail(input: $input) {\n    token\n  }\n}\n",
+    "text": "mutation LoginMutation(\n  $input: LoginEmailInput!\n) {\n  LoginEmail(input: $input) {\n    token\n    error\n    user {\n      name\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ab6ceaa63f4544cf7d3a0422cf7b328c';
+(node/*: any*/).hash = '08906ea16d56736d9252bb200801aca2';
 module.exports = node;

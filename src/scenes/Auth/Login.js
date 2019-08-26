@@ -2,30 +2,36 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Dimensions, StyleSheet, View, Platform } from 'react-native';
 import { Formik } from 'formik';
 import styled from 'styled-components';
 import Colors from '../../utils/Colors';
-import { Input, Button } from '../../components';
+import { Input, Button, ToastError } from '../../components';
 import LoginMutation from './LoginMutation';
 import { loginValidation } from '../../components/FormValidations/authValidation';
 
 const { width, height } = Dimensions.get('window');
 
 function Login({ screenProps, navigation }) {
+	const [ error, setError ] = useState('');
 	function handleLogin({ email, password }) {
 		const input = { email, password };
-		const onCompleted = async ({ LoginEmail }) => {
-			if (LoginEmail) {
-				screenProps.onUserUpdate && screenProps.onUserUpdate(LoginEmail);
+
+		const onCompleted = async (res) => {
+			const data = res && res.LoginEmail;
+			if (data.error) {
+				setError(data.error);
+			}
+			if (data && data.token) {
+				screenProps.onUserUpdate && screenProps.onUserUpdate(data);
 			}
 		};
 
-		const onError = (e) => console.log(e);
-
-		LoginMutation.commit(input, onCompleted, onError);
+		LoginMutation.commit(input, onCompleted);
 	}
+
+	console.log(error);
 
 	return (
 		<Container>
@@ -68,6 +74,8 @@ function Login({ screenProps, navigation }) {
 					);
 				}}
 			/>
+			<ToastError text={error} hasError={!!error} />
+
 			<White />
 		</Container>
 	);

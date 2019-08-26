@@ -88,6 +88,8 @@ function Books({ query, relay, isFetching, navigation }) {
 		return null;
 	}
 
+	console.log('ta caindo aqui antes');
+
 	return (
 		<Container>
 			<Header onSearch={onSearch} title={'Design Books'} />

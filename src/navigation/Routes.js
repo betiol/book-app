@@ -12,28 +12,30 @@ const RouteConfigMap = {
 	DrawerNavigator: {
 		path: '/',
 		screen: require('./DrawerNavigator').default,
-		navigationOptions: {
-			header: null
+		defaultNavigationOptions: {
+			gesturesEnabled: true
 		}
 	},
 	Login: {
 		path: '/login',
 		screen: require('../scenes/Auth/Login').default,
-		navigationOptions: {
+		defaultNavigationOptions: {
 			gesturesEnabled: false
 		}
 	},
 	Register: {
 		path: '/register',
 		screen: require('../scenes/Auth/Register').default,
-		navigationOptions: {
+		defaultNavigationOptions: {
 			gesturesEnabled: false
 		}
 	}
 };
 
 const LoggedInRoutes = createAppContainer(
-	createSwitchNavigator(RouteConfigMap, { initialRouteName: 'DrawerNavigator' })
+	createSwitchNavigator(RouteConfigMap, {
+		initialRouteName: 'DrawerNavigator'
+	})
 );
 
 const LoggedOutRoutes = createAppContainer(

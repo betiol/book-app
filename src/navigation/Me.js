@@ -2,7 +2,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import { QueryRenderer, graphql } from 'react-relay';
@@ -23,38 +23,20 @@ function getInitialLetters(name: string): string {
 	return initials;
 }
 
-export default function Me() {
-	return (
-		<QueryRenderer
-			environment={Environment}
-			query={graphql`
-				query MeQuery {
-					me {
-						id
-						_id
-						name
-						email
-					}
-				}
-			`}
-			render={({ error, props }) => {
-				if (!props) return <Text>Loading...</Text>;
-				if (props) {
-					return (
-						<UserContainer>
-							<AvatarTextContainer>
-								<AvatarText>
-									{props.me && getInitialLetters(props.me && props.me.name)}
-								</AvatarText>
-							</AvatarTextContainer>
-							<Name>{props.me && props.me.name}</Name>
-						</UserContainer>
-					);
-				}
+export default function Me(props) {
+	const { user } = props.screenProps.user;
 
-				return <Text>Loading...</Text>;
-			}}
-		/>
+	if (!user) {
+		return <Text>Loading...</Text>;
+	}
+
+	return (
+		<UserContainer>
+			<AvatarTextContainer>
+				<AvatarText>{getInitialLetters(user && user.name)}</AvatarText>
+			</AvatarTextContainer>
+			<Name>{user && user.name}</Name>
+		</UserContainer>
 	);
 }
 

@@ -19,7 +19,7 @@ import UserLikeBookMutation from './UserLikeBookMutation';
 function BookDetails({ query }) {
 	const navigation = useNavigation();
 	const index = useNavigationParam('index');
-
+	console.log('INDEX', `image${index}`);
 	function handleLike(book) {
 		const onCompleted = (response) => console.log(response);
 
@@ -37,7 +37,7 @@ function BookDetails({ query }) {
 			<Details>
 				<HeadWrapper>
 					<BookImage>
-						<Transition delay shared={`image${index}`}>
+						<Transition shared={`image${index}`}>
 							<BookItem image={query.book.image} />
 						</Transition>
 						<Pages>{query.book.pages} pages</Pages>

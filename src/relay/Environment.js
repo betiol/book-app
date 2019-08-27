@@ -6,7 +6,7 @@ const BASE_URL = 'http://192.168.1.5:5001/graphql';
 const fetchQuery = async (request, variables) => {
 	const body = JSON.stringify({
 		query: request.text,
-		variables
+		variables,
 	});
 
 	const token = await UserStorage.getToken();
@@ -14,13 +14,13 @@ const fetchQuery = async (request, variables) => {
 	const headers = {
 		Accept: 'application/json',
 		'Content-Type': 'application/json',
-		Authorization: token
+		Authorization: token,
 	};
 
 	const response = await fetch(BASE_URL, {
 		method: 'POST',
 		headers,
-		body
+		body,
 	});
 
 	return await response.json();
@@ -33,7 +33,7 @@ const store = new Store(source);
 
 const env = new Environment({
 	network,
-	store
+	store,
 });
 
 export default env;

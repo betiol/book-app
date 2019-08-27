@@ -13,11 +13,6 @@ const Wrapper = styled.View`
 	flex: 1;
 `;
 
-const Loading = styled.ActivityIndicator.attrs({
-	color: 'black',
-	animating: true
-})``;
-
 const ErrorText = styled.Text`
 	font-size: 18px;
 	color: black;
@@ -75,12 +70,6 @@ export function createQueryRenderer(
 					if (props) {
 						return <FragmentComponent {...properties} query={props} />;
 					}
-
-					// return (
-					// 	<Wrapper>
-					// 		<Loading />
-					// 	</Wrapper>
-					// );
 				}}
 			/>
 		);

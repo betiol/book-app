@@ -40,5 +40,5 @@ export function ToastError({ hasError, text }: Props) {
 
 ToastError.propTypes = {
 	hasError: bool.isRequired,
-	text: string.isRequired
+	text: string.isRequired,
 };

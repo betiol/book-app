@@ -3,7 +3,7 @@ import { commitMutation, graphql } from 'react-relay';
 import RelayEnvironment from '../../relay/Environment';
 import {
 	LoginMutationVariables,
-	LoginMutationResponse
+	LoginMutationResponse,
 } from './__generated__/LoginMutation.graphql';
 
 const mutation = graphql`
@@ -28,7 +28,7 @@ function commit(
 		mutation,
 		variables,
 		onCompleted,
-		onError
+		onError,
 	});
 }
 

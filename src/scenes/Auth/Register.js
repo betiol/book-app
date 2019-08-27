@@ -25,7 +25,7 @@ function Register({ screenProps, navigation }) {
 				setError(data.error);
 			}
 			if (data && data.token) {
-				screenProps.onUserUpdate && screenProps.onUserUpdate(RegisterEmail);
+				screenProps.onUserUpdate && screenProps.onUserUpdate(data);
 			}
 		};
 
@@ -86,7 +86,7 @@ function Register({ screenProps, navigation }) {
 
 const Container = styled.KeyboardAvoidingView.attrs({
 	behavior: 'padding',
-	enabled: Platform.OS === 'ios'
+	enabled: Platform.OS === 'ios',
 })`
 	flex: 1;
 	justify-content: center;
@@ -144,12 +144,12 @@ const styles = StyleSheet.create({
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
-			height: 2
+			height: 2,
 		},
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
-		elevation: 5
-	}
+		elevation: 5,
+	},
 });
 
 export default Register;

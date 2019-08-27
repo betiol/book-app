@@ -6,11 +6,11 @@ import React, { Fragment, useState } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { Transition } from 'react-navigation-fluid-transitions';
+import { withNavigation } from 'react-navigation';
+import { string, bool, func } from 'prop-types';
 import { IMAGES } from '../assets/images';
 import Colors from '../utils/Colors';
 import { Input } from './Input';
-import { withNavigation } from 'react-navigation';
 
 type Props = {
 	withNavigation?: boolean,
@@ -79,15 +79,15 @@ const BackButtonWrapper = styled.View`
 const Button = styled.TouchableOpacity``;
 
 const Arrow = styled.Image.attrs({
-	source: IMAGES.ARROW
+	source: IMAGES.ARROW,
 })``;
 
 const Menu = styled.Image.attrs({
-	source: IMAGES.MENU
+	source: IMAGES.MENU,
 })``;
 
 const Search = styled.Image.attrs({
-	source: IMAGES.SEARCH
+	source: IMAGES.SEARCH,
 })``;
 
 const Text = styled.Text`
@@ -117,6 +117,11 @@ const ButtonIcon = styled.TouchableOpacity`
 	margin-left: 2px;
 `;
 
-const TitleWrapper = styled.View`margin-top: 8px;`;
+Header.proptypes = {
+	withNavigation: bool,
+	onPress: func.isRequired,
+	title: string,
+	isSearching: bool,
+};
 
 export default withNavigation(Header);

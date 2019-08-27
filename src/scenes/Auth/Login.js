@@ -2,8 +2,8 @@
  * @flow
  */
 
-import React, { useState, Fragment } from 'react';
-import { Dimensions, StyleSheet, Alert, View, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { Dimensions, StyleSheet, Platform } from 'react-native';
 import { Formik } from 'formik';
 import styled from 'styled-components';
 import Colors from '../../utils/Colors';
@@ -81,7 +81,7 @@ function Login({ screenProps, navigation }) {
 
 const Container = styled.KeyboardAvoidingView.attrs({
 	behavior: 'padding',
-	enabled: Platform.OS === 'ios'
+	enabled: Platform.OS === 'ios',
 })`
 	flex: 1;
 	justify-content: center;
@@ -141,12 +141,12 @@ const styles = StyleSheet.create({
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
-			height: 2
+			height: 2,
 		},
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
-		elevation: 5
-	}
+		elevation: 5,
+	},
 });
 
 export default Login;

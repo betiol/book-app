@@ -6,6 +6,7 @@ import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
+import { string, func, bool } from 'prop-types';
 
 type Props = {
 	text: string,
@@ -39,3 +40,9 @@ const Text = styled.Text`
 	font-weight: bold;
 	font-size: 15;
 `;
+
+Button.propTypes = {
+	onPress: func.isRequired,
+	loading: bool.isRequired,
+	text: string.isRequired,
+};

@@ -19,7 +19,7 @@ type Props = {
 	isSearching: boolean
 };
 
-function Header({ withNavigation, navigation, onPress, title, onSearch }: Props) {
+function Header({ withNavigation, navigation, onPress, withSearch, title, onSearch }: Props) {
 	const [ isSearching, setSearching ] = useState(false);
 	return (
 		<Wrapper>
@@ -52,9 +52,13 @@ function Header({ withNavigation, navigation, onPress, title, onSearch }: Props)
 						<View>
 							<Text>{title}</Text>
 						</View>
-						<Button onPress={() => setSearching(true)}>
-							<Search />
-						</Button>
+						{withSearch ? (
+							<Button onPress={() => setSearching(true)}>
+								<Search />
+							</Button>
+						) : (
+							<Text> </Text>
+						)}
 					</BackButtonWrapper>
 					<Divider />
 				</Fragment>

@@ -5,31 +5,20 @@ import type { GraphQLTaggedNode, Variables } from 'react-relay';
 import styled from 'styled-components';
 import { QueryRenderer } from 'react-relay';
 import environment from './Environment';
+import { Button } from '../components';
 
 const Wrapper = styled.View`
 	align-items: center;
 	justify-content: center;
 	background-color: white;
 	flex: 1;
+	padding: 10px;
 `;
 
 const ErrorText = styled.Text`
 	font-size: 18px;
 	color: black;
 	margin-bottom: 10;
-`;
-
-const RetryButton = styled.TouchableOpacity`
-	align-items: center;
-	justify-content: center;
-	border-radius: 20;
-	padding: 10px 20px;
-`;
-
-const RetryText = styled.Text`
-	color: white;
-	font-weight: 900;
-	font-size: 18;
 `;
 
 type Config = {
@@ -60,9 +49,7 @@ export function createQueryRenderer(
 						return (
 							<Wrapper>
 								<ErrorText>Please check your internet connection</ErrorText>
-								<RetryButton onPress={retry}>
-									<RetryText>Retry</RetryText>
-								</RetryButton>
+								<Button text={'Try again'} onPress={retry} />
 							</Wrapper>
 						);
 					}
@@ -100,9 +87,7 @@ export function createQueryRendererWithCustomLoading(
 						return (
 							<Wrapper>
 								<ErrorText>Please check your internet connection</ErrorText>
-								<RetryButton onPress={retry}>
-									<RetryText>Retry</RetryText>
-								</RetryButton>
+								<Button text={'Try again'} onPress={retry} />
 							</Wrapper>
 						);
 					}

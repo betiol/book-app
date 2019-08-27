@@ -16,15 +16,15 @@ const BooksRoutes = createFluidNavigator({
 	Books,
 	LikedBooks,
 	BookDetails,
-	BookAdd
+	BookAdd,
 });
 
 export default createDrawerNavigator(
 	{
-		BooksRoutes
+		BooksRoutes,
 	},
 	{
 		drawerBackgroundColor: Colors.primary,
-		contentComponent: DrawerNavigatorItems
+		contentComponent: DrawerNavigatorItems,
 	}
 );

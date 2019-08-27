@@ -35,13 +35,11 @@ function App(props) {
 		return null;
 	}
 
-	let Routes = LoggedInRoutes;
-
-	if (!user) {
-		Routes = LoggedOutRoutes;
+	if (!user.token) {
+		return <LoggedOutRoutes screenProps={{ user, onUserUpdate: onUserUpdate }} />;
 	}
 
-	return <Routes screenProps={{ user, onUserUpdate: onUserUpdate }} />;
+	return <LoggedInRoutes screenProps={{ user, onUserUpdate: onUserUpdate }} />;
 }
 
 export default App;

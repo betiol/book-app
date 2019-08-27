@@ -28,7 +28,7 @@ function LikedBooks({ query, relay, isFetching, navigation }) {
 				setRefreshing(false);
 			},
 			{
-				force: false
+				force: false,
 			}
 		);
 	}
@@ -50,7 +50,7 @@ function LikedBooks({ query, relay, isFetching, navigation }) {
 								onPress={() =>
 									navigation.navigate('BookDetails', {
 										book: item.node,
-										index: item.node._id
+										index: item.node._id,
 									})}
 							>
 								<BooksContainer>
@@ -80,11 +80,19 @@ const Wrapper = styled.View`
 
 const BooksContainer = styled.View`
 	margin-top: 10px;
-	padding: 10px;
+	padding: 2px;
+	flex: 1;
+	justify-content: space-between;
 	margin-bottom: 5px;
 `;
 
-const Button = styled.TouchableOpacity``;
+const Button = styled.TouchableOpacity`
+	padding: 2px;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+`;
 
 const BooksRefetchContainer = createRefetchContainer(
 	LikedBooks,
@@ -108,7 +116,7 @@ const BooksRefetchContainer = createRefetchContainer(
 					}
 				}
 			}
-		`
+		`,
 	},
 	graphql`
 		query LikedBooksRefetchQuery($first: Int, $cursor: String, $search: String) {
@@ -124,6 +132,6 @@ export default createQueryRendererWithCustomLoading(BooksRefetchContainer, Liked
 		}
 	`,
 	variables: {
-		first: 10
-	}
+		first: 10,
+	},
 });

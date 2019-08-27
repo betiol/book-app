@@ -13,7 +13,6 @@ function DrawerNavigatorItems(props) {
 	async function logout() {
 		props.navigation.navigate('Login');
 		await UserStorage.clearAll();
-		screenProps.onUserUpdate(null);
 	}
 	return (
 		<Container>
@@ -50,8 +49,6 @@ function DrawerNavigatorItems(props) {
 }
 
 const Container = styled.View`flex: 1;`;
-
-const ItemsContainer = styled.View`flex: 3;`;
 
 const MenuContainer = styled.View`flex: 3;`;
 

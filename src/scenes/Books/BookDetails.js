@@ -44,7 +44,7 @@ function BookDetails({ query, navigation }) {
 					<BookInfos>
 						<Transition appear="horizontal">
 							<View style={{ flex: 1, justifyContent: 'space-between' }}>
-								<Title>{query.book.title}</Title>
+								<Title numberOfLines={2}>{query.book.title}</Title>
 								<Author>{query.book.author}</Author>
 								<Price>$ {query.book.price}</Price>
 								<ButtonsContainer>
@@ -137,16 +137,19 @@ const BookImage = styled.View`
 	align-items: center;
 `;
 
-const BookInfos = styled.View`flex: 2;`;
+const BookInfos = styled.View`
+	flex: 2;
+	margin-left: 5px;
+`;
 
 const Title = styled.Text`
 	font-weight: bold;
-	font-size: 17;
+	font-size: 16;
 `;
 
 const Author = styled.Text`
 	color: #9f8b0c;
-	font-size: 14px;
+	font-size: 13px;
 	margin-top: 5px;
 	margin-top: 2px;
 `;

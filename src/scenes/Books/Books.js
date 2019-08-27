@@ -34,7 +34,7 @@ function Books({ query, relay, isFetching, navigation }) {
 	function refetch(newRefetchVariable) {
 		const refetchVariables = (fragmentVariables) => ({
 			...fragmentVariables,
-			...newRefetchVariable,
+			...newRefetchVariable
 		});
 
 		relay.refetch(
@@ -44,7 +44,7 @@ function Books({ query, relay, isFetching, navigation }) {
 				setRefreshing(false);
 			},
 			{
-				force: false,
+				force: false
 			}
 		);
 	}
@@ -64,10 +64,10 @@ function Books({ query, relay, isFetching, navigation }) {
 		const refetchVariables = (fragmentVariables) => ({
 			...fragmentVariables,
 			first: TOTAL_REFETCH_ITEMS,
-			cursor: endCursor,
+			cursor: endCursor
 		});
 		const renderVariables = {
-			first: total,
+			first: total
 		};
 
 		relay.refetch(
@@ -78,7 +78,7 @@ function Books({ query, relay, isFetching, navigation }) {
 				setRefreshing(false);
 			},
 			{
-				force: false,
+				force: false
 			}
 		);
 	}
@@ -143,7 +143,7 @@ const BooksRefetchContainer = createRefetchContainer(
 					}
 				}
 			}
-		`,
+		`
 	},
 	graphql`
 		query BooksRefetchQuery($first: Int, $cursor: String, $search: String) {
@@ -159,8 +159,8 @@ export default createQueryRendererWithCustomLoading(BooksRefetchContainer, Books
 		}
 	`,
 	variables: {
-		first: 10,
-	},
+		first: 10
+	}
 });
 
 const Container = styled.SafeAreaView`
@@ -176,8 +176,16 @@ const Wrapper = styled.View`
 
 const BooksContainer = styled.View`
 	margin-top: 10px;
-	padding: 10px;
+	padding: 2px;
+	flex: 1;
+	justify-content: space-between;
 	margin-bottom: 5px;
 `;
 
-const Button = styled.TouchableOpacity``;
+const Button = styled.TouchableOpacity`
+	padding: 2px;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+`;

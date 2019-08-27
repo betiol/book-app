@@ -34,7 +34,7 @@ function BookAdd() {
 	}
 
 	return (
-		<Fragment>
+		<Container>
 			<SafeAreaTop />
 			<Header title={'Add Book'} withNavigation onPress={() => navigation.goBack()} />
 			<Formik
@@ -42,59 +42,57 @@ function BookAdd() {
 				validationSchema={bookValidation}
 				render={({ values, errors, handleChange, handleSubmit }) => {
 					return (
-						<Container>
+						<Fragment>
 							<ToastError error={error} />
-							<Fragment>
-								<Input
-									placeholder={'Title'}
-									value={values.title}
-									onChangeText={handleChange('title')}
-									error={errors.title}
-								/>
-								<Input
-									placeholder={'Description'}
-									value={values.description}
-									onChangeText={handleChange('description')}
-									error={errors.description}
-								/>
-								<Input
-									placeholder={'Price'}
-									value={values.price}
-									keyboardType={'numeric'}
-									onChangeText={handleChange('price')}
-									error={errors.price}
-								/>
-								<Input
-									placeholder={'Pages'}
-									value={values.pages}
-									onChangeText={handleChange('pages')}
-									error={errors.pages}
-								/>
-								<Input
-									placeholder={'Image URL'}
-									value={values.image}
-									onChangeText={handleChange('image')}
-									error={errors.image}
-								/>
-								<Input
-									placeholder={'Author'}
-									value={values.author}
-									onChangeText={handleChange('author')}
-									error={errors.author}
-								/>
-								<Input
-									placeholder={'Purchase URL'}
-									value={values.purchaseUrl}
-									onChangeText={handleChange('purchaseUrl')}
-									error={errors.purchaseUrl}
-								/>
-								<Button onPress={handleSubmit} text={'Save'} />
-							</Fragment>
-						</Container>
+							<Input
+								placeholder={'Title'}
+								value={values.title}
+								onChangeText={handleChange('title')}
+								error={errors.title}
+							/>
+							<Input
+								placeholder={'Description'}
+								value={values.description}
+								onChangeText={handleChange('description')}
+								error={errors.description}
+							/>
+							<Input
+								placeholder={'Price'}
+								value={values.price}
+								keyboardType={'numeric'}
+								onChangeText={handleChange('price')}
+								error={errors.price}
+							/>
+							<Input
+								placeholder={'Pages'}
+								value={values.pages}
+								onChangeText={handleChange('pages')}
+								error={errors.pages}
+							/>
+							<Input
+								placeholder={'Image URL'}
+								value={values.image}
+								onChangeText={handleChange('image')}
+								error={errors.image}
+							/>
+							<Input
+								placeholder={'Author'}
+								value={values.author}
+								onChangeText={handleChange('author')}
+								error={errors.author}
+							/>
+							<Input
+								placeholder={'Purchase URL'}
+								value={values.purchaseUrl}
+								onChangeText={handleChange('purchaseUrl')}
+								error={errors.purchaseUrl}
+							/>
+							<Button onPress={handleSubmit} text={'Save'} />
+						</Fragment>
 					);
 				}}
 			/>
-		</Fragment>
+		</Container>
 	);
 }
 
@@ -103,7 +101,6 @@ const Container = styled.KeyboardAvoidingView.attrs({
 	enabled: Platform.OS === 'ios',
 })`
 	flex: 1;
-  padding: 10px;
 `;
 
 const SafeAreaTop = styled.SafeAreaView`background-color: ${Colors.primary};`;

@@ -5,7 +5,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import styled from 'styled-components';
-import { Transition } from 'react-navigation-fluid-transitions';
+import { IMAGES } from '../../assets/images';
 import Image from 'react-native-fast-image';
 
 export type Book = {
@@ -15,7 +15,11 @@ export type Book = {
 export function BookItem({ image }: Book) {
 	return (
 		<View style={styles.item}>
-			<FastImage source={{ uri: image, priority: Image.priority.normal }} />
+			<FastImage
+				fallback
+				defaultSource={IMAGES.BOOK_NOT_EXISTS}
+				source={{ uri: image, priority: Image.priority.normal }}
+			/>
 		</View>
 	);
 }
@@ -30,11 +34,11 @@ const styles = StyleSheet.create({
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 3,
-			height: 4
+			height: 4,
 		},
 		marginBottom: 4,
 		shadowOpacity: 0.5,
 		shadowRadius: 3,
-		elevation: 4
-	}
+		elevation: 4,
+	},
 });

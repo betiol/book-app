@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 04d09e79e0e7e4ad0d72a69b81ade104
+ * @relayHash 4661e6bf74dc8ae8febc3029d5640654
  */
 
 /* eslint-disable */
@@ -21,7 +21,9 @@ export type RegisterMutationVariables = {|
 export type RegisterMutationResponse = {|
   +RegisterEmail: ?{|
     +token: ?string,
-    +error: ?string,
+    +error: ?$ReadOnlyArray<?{|
+      +message: ?string
+    |}>,
     +user: ?{|
       +name: ?string
     |},
@@ -40,7 +42,9 @@ mutation RegisterMutation(
 ) {
   RegisterEmail(input: $input) {
     token
-    error
+    error {
+      message
+    }
     user {
       name
       id
@@ -73,11 +77,22 @@ v2 = {
   "storageKey": null
 },
 v3 = {
-  "kind": "ScalarField",
+  "kind": "LinkedField",
   "alias": null,
   "name": "error",
+  "storageKey": null,
   "args": null,
-  "storageKey": null
+  "concreteType": "Error",
+  "plural": true,
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "message",
+      "args": null,
+      "storageKey": null
+    }
+  ]
 },
 v4 = {
   "kind": "ScalarField",
@@ -165,11 +180,11 @@ return {
     "operationKind": "mutation",
     "name": "RegisterMutation",
     "id": null,
-    "text": "mutation RegisterMutation(\n  $input: RegisterEmailInput!\n) {\n  RegisterEmail(input: $input) {\n    token\n    error\n    user {\n      name\n      id\n    }\n  }\n}\n",
+    "text": "mutation RegisterMutation(\n  $input: RegisterEmailInput!\n) {\n  RegisterEmail(input: $input) {\n    token\n    error {\n      message\n    }\n    user {\n      name\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '33a7bbc121fdcf48319842426f783774';
+(node/*: any*/).hash = '764d805ab650a953d47cce06b28275ab';
 module.exports = node;

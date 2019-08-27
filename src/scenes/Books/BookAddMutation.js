@@ -3,7 +3,7 @@ import { graphql, commitMutation } from 'react-relay';
 import Environment from '../../relay/Environment';
 import type {
 	BookAddMutationVariables,
-	BookAddMutationResponse
+	BookAddMutationResponse,
 } from './__generated__/BookAddMutation.graphql';
 
 const mutation = graphql`
@@ -13,6 +13,9 @@ const mutation = graphql`
 				id
 				title
 				description
+			}
+			error {
+				message
 			}
 		}
 	}
@@ -28,7 +31,7 @@ function commit(
 		mutation,
 		variables,
 		onCompleted,
-		onError
+		onError,
 	});
 }
 

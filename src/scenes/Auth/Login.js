@@ -14,7 +14,7 @@ import { loginValidation } from '../../components/FormValidations/authValidation
 const { width, height } = Dimensions.get('window');
 
 function Login({ screenProps, navigation }) {
-	const [ error, setError ] = useState('');
+	const [ error, setError ] = useState([]);
 	function handleLogin({ email, password }) {
 		const input = { email, password };
 
@@ -72,7 +72,7 @@ function Login({ screenProps, navigation }) {
 					);
 				}}
 			/>
-			<ToastError text={error} hasError={!!error} />
+			<ToastError error={error} hasError={error.length} />
 
 			<White />
 		</Container>

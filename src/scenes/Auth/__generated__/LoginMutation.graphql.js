@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7847f042a49cb8e3f6b832ba632e6203
+ * @relayHash 2e1fa1466c51268c4771ed49ec769c44
  */
 
 /* eslint-disable */
@@ -20,7 +20,9 @@ export type LoginMutationVariables = {|
 export type LoginMutationResponse = {|
   +LoginEmail: ?{|
     +token: ?string,
-    +error: ?string,
+    +error: ?$ReadOnlyArray<?{|
+      +message: ?string
+    |}>,
     +user: ?{|
       +name: ?string
     |},
@@ -39,7 +41,9 @@ mutation LoginMutation(
 ) {
   LoginEmail(input: $input) {
     token
-    error
+    error {
+      message
+    }
     user {
       name
       id
@@ -72,11 +76,22 @@ v2 = {
   "storageKey": null
 },
 v3 = {
-  "kind": "ScalarField",
+  "kind": "LinkedField",
   "alias": null,
   "name": "error",
+  "storageKey": null,
   "args": null,
-  "storageKey": null
+  "concreteType": "Error",
+  "plural": true,
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "message",
+      "args": null,
+      "storageKey": null
+    }
+  ]
 },
 v4 = {
   "kind": "ScalarField",
@@ -164,11 +179,11 @@ return {
     "operationKind": "mutation",
     "name": "LoginMutation",
     "id": null,
-    "text": "mutation LoginMutation(\n  $input: LoginEmailInput!\n) {\n  LoginEmail(input: $input) {\n    token\n    error\n    user {\n      name\n      id\n    }\n  }\n}\n",
+    "text": "mutation LoginMutation(\n  $input: LoginEmailInput!\n) {\n  LoginEmail(input: $input) {\n    token\n    error {\n      message\n    }\n    user {\n      name\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '08906ea16d56736d9252bb200801aca2';
+(node/*: any*/).hash = 'ef81a0441b304242238542b8d79c05ef';
 module.exports = node;

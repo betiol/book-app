@@ -4,24 +4,27 @@
 
 import React, { useEffect, useRef } from 'react';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import styled from 'styled-components';
 import { string, bool } from 'prop-types';
 
-type Props = {
-	hasError: boolean,
-	text: string
+type Error = {
+	path: string,
+	message: string
 };
 
-export function ToastError({ hasError, text }: Props) {
-	const toast = useRef();
+type Props = {
+	error: Array<Error>
+};
 
+export function ToastError({ error }: Props) {
+	const toast = useRef();
 	useEffect(
 		() => {
-			if (hasError) {
-				toast.current.show(text);
+			if (error.length) {
+				const errors = Object.values(error).map((err) => `- ${err.message}`).join(' \n');
+				toast.current.show(errors, DURATION.LENGTH_SHORT);
 			}
 		},
-		[ hasError ]
+		[ error ]
 	);
 
 	return (

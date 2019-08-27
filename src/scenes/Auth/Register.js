@@ -2,7 +2,7 @@
  * @flow
  */
 
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Dimensions, StyleSheet, Platform } from 'react-native';
 import { Formik } from 'formik';
 import styled from 'styled-components';
@@ -14,13 +14,14 @@ import { registerValidation } from '../../components/FormValidations/authValidat
 const { width, height } = Dimensions.get('window');
 
 function Register({ screenProps, navigation }) {
-	const [ error, setError ] = useState('');
+	const [ error, setError ] = useState([]);
 
 	function handleRegister({ name, email, password }) {
 		const input = { email, password, name };
 
 		const onCompleted = async (res) => {
 			const data = res && res.RegisterEmail;
+
 			if (data.error) {
 				setError(data.error);
 			}
@@ -45,7 +46,6 @@ function Register({ screenProps, navigation }) {
 						<LoginForm style={styles.form}>
 							<Title>SIGN UP</Title>
 							<Input
-								value={values.name}
 								placeholder={'Your name'}
 								error={errors.name}
 								onChangeText={handleChange('name')}
@@ -78,7 +78,7 @@ function Register({ screenProps, navigation }) {
 					);
 				}}
 			/>
-			<ToastError text={error} hasError={!!error} />
+			<ToastError error={error} hasError={error.length} />
 			<White />
 		</Container>
 	);

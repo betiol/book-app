@@ -10,7 +10,9 @@ const mutation = graphql`
 	mutation LoginMutation($input: LoginEmailInput!) {
 		LoginEmail(input: $input) {
 			token
-			error
+			error {
+				message
+			}
 			user {
 				name
 			}

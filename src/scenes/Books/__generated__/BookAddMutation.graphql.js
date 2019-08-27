@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8d4c93ef488e0610be990624df2105a0
+ * @relayHash 1343f014a925531eaa5c635a6b170a75
  */
 
 /* eslint-disable */
@@ -29,7 +29,10 @@ export type BookAddMutationResponse = {|
       +id: string,
       +title: ?string,
       +description: ?string,
-    |}
+    |},
+    +error: ?$ReadOnlyArray<?{|
+      +message: ?string
+    |}>,
   |}
 |};
 export type BookAddMutation = {|
@@ -48,6 +51,9 @@ mutation BookAddMutation(
       id
       title
       description
+    }
+    error {
+      message
     }
   }
 }
@@ -109,6 +115,24 @@ v1 = [
             "storageKey": null
           }
         ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "error",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Error",
+        "plural": true,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "message",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -133,11 +157,11 @@ return {
     "operationKind": "mutation",
     "name": "BookAddMutation",
     "id": null,
-    "text": "mutation BookAddMutation(\n  $input: BookAddInput!\n) {\n  BookAdd(input: $input) {\n    book {\n      id\n      title\n      description\n    }\n  }\n}\n",
+    "text": "mutation BookAddMutation(\n  $input: BookAddInput!\n) {\n  BookAdd(input: $input) {\n    book {\n      id\n      title\n      description\n    }\n    error {\n      message\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'acccbe30e7ac1bcebce7d80fea5d567d';
+(node/*: any*/).hash = 'c1950b20d0e3565b9b9d749c75c9be80';
 module.exports = node;

@@ -2,22 +2,31 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Platform } from 'react-native';
 import styled from 'styled-components';
 import { useNavigation } from 'react-navigation-hooks';
 import { Formik } from 'formik';
-import { Input, Button } from '../../components';
+import { Input, Button, ToastError } from '../../components';
 import Header from '../../components/Header';
 import BookAddMutation from './BookAddMutation';
 import { bookValidation } from '../../components/FormValidations/bookValidation';
 import Colors from '../../utils/Colors';
 
 function BookAdd() {
+	const [ error, setError ] = useState([]);
 	const navigation = useNavigation();
 
 	function handleAdd(input) {
-		const onCompleted = () => navigation.navigate('Books');
+		const onCompleted = (res) => {
+			const data = res && res.BookAdd;
+			if (data.error) {
+				setError(data.error);
+			}
+			if (data && data.book) {
+				navigation.navigate('Books');
+			}
+		};
 
 		const onError = (error) => console.log(error);
 
@@ -34,6 +43,7 @@ function BookAdd() {
 				render={({ values, errors, handleChange, handleSubmit }) => {
 					return (
 						<Container>
+							<ToastError error={error} />
 							<Fragment>
 								<Input
 									placeholder={'Title'}
@@ -90,7 +100,7 @@ function BookAdd() {
 
 const Container = styled.KeyboardAvoidingView.attrs({
 	behavior: 'padding',
-	enabled: Platform.OS === 'ios'
+	enabled: Platform.OS === 'ios',
 })`
 	flex: 1;
   padding: 10px;

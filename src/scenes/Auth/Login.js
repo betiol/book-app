@@ -3,7 +3,7 @@
  */
 
 import React, { useState, Fragment } from 'react';
-import { Dimensions, StyleSheet, View, Platform } from 'react-native';
+import { Dimensions, StyleSheet, Alert, View, Platform } from 'react-native';
 import { Formik } from 'formik';
 import styled from 'styled-components';
 import Colors from '../../utils/Colors';

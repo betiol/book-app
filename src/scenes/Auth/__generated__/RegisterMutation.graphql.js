@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f5858344ecf82e4c962dd6e4e3556907
+ * @relayHash 04d09e79e0e7e4ad0d72a69b81ade104
  */
 
 /* eslint-disable */
@@ -21,6 +21,7 @@ export type RegisterMutationVariables = {|
 export type RegisterMutationResponse = {|
   +RegisterEmail: ?{|
     +token: ?string,
+    +error: ?string,
     +user: ?{|
       +name: ?string
     |},
@@ -39,6 +40,7 @@ mutation RegisterMutation(
 ) {
   RegisterEmail(input: $input) {
     token
+    error
     user {
       name
       id
@@ -73,6 +75,13 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "error",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
@@ -96,6 +105,7 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -105,7 +115,7 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              (v3/*: any*/)
+              (v4/*: any*/)
             ]
           }
         ]
@@ -127,6 +137,7 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -136,7 +147,7 @@ return {
             "concreteType": "User",
             "plural": false,
             "selections": [
-              (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -154,11 +165,11 @@ return {
     "operationKind": "mutation",
     "name": "RegisterMutation",
     "id": null,
-    "text": "mutation RegisterMutation(\n  $input: RegisterEmailInput!\n) {\n  RegisterEmail(input: $input) {\n    token\n    user {\n      name\n      id\n    }\n  }\n}\n",
+    "text": "mutation RegisterMutation(\n  $input: RegisterEmailInput!\n) {\n  RegisterEmail(input: $input) {\n    token\n    error\n    user {\n      name\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '28419177bd3fc65069087847287cd5a5';
+(node/*: any*/).hash = '33a7bbc121fdcf48319842426f783774';
 module.exports = node;

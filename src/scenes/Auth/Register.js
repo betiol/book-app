@@ -2,22 +2,29 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Dimensions, StyleSheet, Platform } from 'react-native';
 import { Formik } from 'formik';
 import styled from 'styled-components';
 import Colors from '../../utils/Colors';
-import { Input, Button } from '../../components';
+import { Input, Button, ToastError } from '../../components';
 import RegisterMutation from './RegisterMutation';
 import { registerValidation } from '../../components/FormValidations/authValidation';
 
 const { width, height } = Dimensions.get('window');
 
 function Register({ screenProps, navigation }) {
+	const [ error, setError ] = useState('');
+
 	function handleRegister({ name, email, password }) {
 		const input = { email, password, name };
-		const onCompleted = async ({ RegisterEmail }) => {
-			if (RegisterEmail) {
+
+		const onCompleted = async (res) => {
+			const data = res && res.RegisterEmail;
+			if (data.error) {
+				setError(data.error);
+			}
+			if (data && data.token) {
 				screenProps.onUserUpdate && screenProps.onUserUpdate(RegisterEmail);
 			}
 		};
@@ -71,6 +78,7 @@ function Register({ screenProps, navigation }) {
 					);
 				}}
 			/>
+			<ToastError text={error} hasError={!!error} />
 			<White />
 		</Container>
 	);

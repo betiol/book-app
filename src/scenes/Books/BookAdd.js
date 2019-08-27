@@ -2,8 +2,8 @@
  * @flow
  */
 
-import React, { Fragment, useState } from 'react';
-import { Platform } from 'react-native';
+import React, { useState } from 'react';
+import { Platform, View } from 'react-native';
 import styled from 'styled-components';
 import { useNavigation } from 'react-navigation-hooks';
 import { Formik } from 'formik';
@@ -42,7 +42,7 @@ function BookAdd() {
 				validationSchema={bookValidation}
 				render={({ values, errors, handleChange, handleSubmit }) => {
 					return (
-						<Fragment>
+						<View padding={10}>
 							<ToastError error={error} />
 							<Input
 								placeholder={'Title'}
@@ -88,7 +88,7 @@ function BookAdd() {
 								error={errors.purchaseUrl}
 							/>
 							<Button onPress={handleSubmit} text={'Save'} />
-						</Fragment>
+						</View>
 					);
 				}}
 			/>

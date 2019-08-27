@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { LoggedInRoutes, Navigator, LoggedOutRoutes } from './navigation/Routes';
+import styled from 'styled-components';
+import { LoggedInRoutes, LoggedOutRoutes } from './navigation/Routes';
 import UserStorage from './utils/UserStorage';
-import Colors from './utils/Colors';
 
-function App(props) {
-	let router = LoggedInRoutes.router;
+function App() {
+	const [ user, setUser ] = useState();
+	const [ loaded, setLoaded ] = useState(false);
 
-	const [ user, setUser ] = useState({});
-	const [ loaded, setLoaded ] = useState({});
-
-	useEffect(() => {
-		loadUser();
-		// UserStorage.clearAll();
-	}, []);
+	useEffect(
+		() => {
+			loadUser();
+		},
+		[ loaded ]
+	);
 
 	async function loadUser() {
 		try {
 			let user = await UserStorage.getUser();
-			setLoaded(true);
 			setUser(user);
+			setLoaded(true);
 		} catch (e) {
 			setLoaded(true);
 		}
@@ -32,14 +32,28 @@ function App(props) {
 	}
 
 	if (!loaded) {
-		return null;
+		return (
+			<LoadingViews>
+				<Loader />
+			</LoadingViews>
+		);
 	}
 
-	if (!user.token) {
+	if (!user) {
 		return <LoggedOutRoutes screenProps={{ user, onUserUpdate: onUserUpdate }} />;
 	}
 
 	return <LoggedInRoutes screenProps={{ user, onUserUpdate: onUserUpdate }} />;
 }
+
+const LoadingViews = styled.View`
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+`;
+
+const Loader = styled.ActivityIndicator.attrs({
+	size: 'large',
+})``;
 
 export default App;

@@ -2,16 +2,10 @@
  * @flow
  */
 
-import React, { useState, useMemo, useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React from 'react';
+import { Text } from 'react-native';
 import styled from 'styled-components';
-import { QueryRenderer, graphql } from 'react-relay';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createQueryRenderer } from '../relay/createQueryRenderer';
-import Environment from '../relay/Environment';
 import Colors from '../utils/Colors';
-import { DrawerItems } from 'react-navigation';
-import UserStorage from '../utils/UserStorage';
 
 function getInitialLetters(name: string): string {
 	const initials: string = name
@@ -24,8 +18,8 @@ function getInitialLetters(name: string): string {
 }
 
 export default function Me(props) {
-	const { user } = props.screenProps.user;
-
+	const user =
+		props && props.screenProps && props.screenProps.user && props.screenProps.user.user;
 	if (!user) {
 		return <Text>Loading...</Text>;
 	}

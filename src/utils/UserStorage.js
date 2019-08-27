@@ -18,7 +18,6 @@ class UserStorage {
 	}
 
 	async updateUser(user) {
-		console.log(user);
 		if (user) {
 			AsyncStorage.setItem('user', JSON.stringify(user));
 			AsyncStorage.setItem('token', user.token);

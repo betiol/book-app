@@ -16,10 +16,9 @@ import { Transition } from 'react-navigation-fluid-transitions';
 import { createQueryRenderer } from '../../relay/createQueryRenderer';
 import UserLikeBookMutation from './UserLikeBookMutation';
 
-function BookDetails({ query }) {
-	const navigation = useNavigation();
+function BookDetails({ query, navigation }) {
 	const index = useNavigationParam('index');
-	console.log('INDEX', `image${index}`);
+
 	function handleLike(book) {
 		const onCompleted = (response) => console.log(response);
 
@@ -54,9 +53,6 @@ function BookDetails({ query }) {
 									>
 										<BuyItNowText>Buy it now</BuyItNowText>
 									</BuyItNow>
-									{/* <HeartContainer onPress={() => handleLike(query.book._id)}>
-									
-									</HeartContainer> */}
 								</ButtonsContainer>
 							</View>
 						</Transition>
@@ -90,9 +86,6 @@ const Container = styled.View`
 const Details = styled.View`
 	flex: 1;
 	padding: 10px;
-	/* padding-left: 10px;
-  m
-	padding-right: 10px; */
 	margin-top: 10px;
 	background-color: ${Colors.primary};
 `;
@@ -116,15 +109,6 @@ const ButtonsContainer = styled.View`
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-end;
-`;
-
-const HeartContainer = styled.TouchableOpacity`
-	background-color: #dc4b5d;
-	border-radius: 15;
-	padding: 10px;
-	/* width: 30;
-	height: 30;
-	 */
 `;
 
 const BuyItNow = styled.TouchableOpacity`

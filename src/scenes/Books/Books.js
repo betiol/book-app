@@ -19,7 +19,6 @@ import { createQueryRendererWithCustomLoading } from '../../relay/createQueryRen
 const TOTAL_REFETCH_ITEMS = 3;
 
 function Books({ query, relay, isFetching, navigation }) {
-	console.log(navigation);
 	const [ refreshing, setRefreshing ] = useState(false);
 	const [ isFetchingEnd, setIsFetchingEnd ] = useState(false);
 
@@ -88,8 +87,6 @@ function Books({ query, relay, isFetching, navigation }) {
 		return null;
 	}
 
-	console.log('ta caindo aqui antes');
-
 	return (
 		<Container>
 			<Header onSearch={onSearch} title={'Design Books'} />
@@ -103,18 +100,20 @@ function Books({ query, relay, isFetching, navigation }) {
 					showsHorizontalScrollIndicator={false}
 					onEndReachedThreshold={0.4}
 					onEndReached={loadMore}
-					renderItem={({ item, index }) => (
-						<Button
-							onPress={() =>
-								navigation.navigate('BookDetails', { book: item.node, index })}
-						>
-							<BooksContainer>
-								<Transition shared={`image${index}`}>
-									<BookItem image={item.node.image} />
-								</Transition>
-							</BooksContainer>
-						</Button>
-					)}
+					renderItem={({ item, index }) => {
+						return (
+							<Button
+								onPress={() =>
+									navigation.navigate('BookDetails', { book: item.node, index })}
+							>
+								<BooksContainer>
+									<Transition shared={`image${index}`}>
+										<BookItem image={item.node.image} />
+									</Transition>
+								</BooksContainer>
+							</Button>
+						);
+					}}
 				/>
 			</Wrapper>
 			<ActionButton onPress={() => navigation.navigate('BookAdd')} degrees={0} />

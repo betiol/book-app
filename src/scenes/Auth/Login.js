@@ -31,8 +31,6 @@ function Login({ screenProps, navigation }) {
 		LoginMutation.commit(input, onCompleted);
 	}
 
-	console.log(error);
-
 	return (
 		<Container>
 			<Yellow />

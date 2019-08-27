@@ -13,7 +13,6 @@ import Colors from '../../utils/Colors';
 import { BookItem } from './BookItem';
 
 function LikedBooks({ query, relay, isFetching, navigation }) {
-	console.log(query);
 	const [ refreshing, setRefreshing ] = useState(false);
 
 	if (isFetching) {

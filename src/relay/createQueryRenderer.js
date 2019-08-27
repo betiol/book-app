@@ -51,8 +51,8 @@ export function createQueryRenderer(
 ): React.ComponentType<*> {
 	const { query, queriesParams } = config;
 
-	function QueryRendererWrapper(props) {
-		const properties = props;
+	function QueryRendererWrapper(qrProps) {
+		const properties = qrProps;
 		const variables = queriesParams ? queriesParams(properties) : config.variables;
 
 		return (

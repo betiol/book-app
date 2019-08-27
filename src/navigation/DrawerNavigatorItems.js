@@ -10,7 +10,6 @@ import Me from './Me';
 import UserStorage from '../utils/UserStorage';
 
 function DrawerNavigatorItems(props) {
-	console.log(props);
 	async function logout() {
 		props.navigation.navigate('Login');
 		await UserStorage.clearAll();

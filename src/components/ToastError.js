@@ -18,7 +18,6 @@ export function ToastError({ hasError, text }: Props) {
 	useEffect(
 		() => {
 			if (hasError) {
-				console.log('aquii');
 				toast.current.show(text);
 			}
 		},

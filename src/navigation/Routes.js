@@ -37,7 +37,6 @@ const LoggedInRoutes = createAppContainer(
 		initialRouteName: 'DrawerNavigator'
 	})
 );
-
 const LoggedOutRoutes = createAppContainer(
 	createSwitchNavigator(RouteConfigMap, { initialRouteName: 'Login' })
 );

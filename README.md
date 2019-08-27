@@ -14,6 +14,9 @@ yarn
 ```sh
 react-native run-<android|ios>
 ```
+<p align="center">
+  <img src="./books.gif">
+</p>
 
 ## Author
 

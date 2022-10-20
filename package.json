@@ -23,7 +23,7 @@
 		"react-native-fast-image": "^7.0.2",
 		"react-native-formik": "^1.7.7",
 		"react-native-gesture-handler": "^1.3.0",
-		"react-native-reanimated": "^1.2.0",
+		"react-native-reanimated": "^2.10.0",
 		"react-native-vector-icons": "^6.6.0",
 		"react-navigation": "^3.11.1",
 		"react-navigation-fluid-transitions": "^0.3.2",
